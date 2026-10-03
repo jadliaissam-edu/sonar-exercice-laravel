@@ -1,0 +1,57 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "jadli/helpdesk",
+    "type": "project",
+    "description": "Support ticket / helpdesk sample application used to practise SonarQube.",
+    "keywords": ["laravel", "helpdesk", "sonarqube", "training"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^11.31",
+        "laravel/tinker": "^2.9"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.1",
+        "phpunit/phpunit": "^11.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "test": "phpunit",
+        "coverage": "phpunit --coverage-clover coverage.xml --log-junit phpunit-report.xml"
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "audit": {
+            "block-insecure": false
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
